@@ -4,15 +4,18 @@ const mongoose = require('mongoose')
 const models = require('./models')
 const bodyParser = require('body-parser')
 const schema = require('./schema/schema')
+const { MONGO_DB_URL } = require('./server.configs')
 
 const app = express()
 
-// Replace with your mongoLab URI
-const MONGO_URI =
-  'mongodb+srv://dbuser:dbuser@cluster0-jxlfc.mongodb.net/test?retryWrites=true&w=majority'
+const MONGO_URI = MONGO_DB_URL
+
 if (!MONGO_URI) {
   throw new Error('You must provide a MongoLab URI')
 }
+
+mongoose.set('useNewUrlParser', true)
+mongoose.set('useUnifiedTopology', true)
 
 mongoose.Promise = global.Promise
 mongoose.connect(MONGO_URI)
@@ -29,9 +32,9 @@ app.use(
   })
 )
 
-const webpackMiddleware = require('webpack-dev-middleware')
-const webpack = require('webpack')
-const webpackConfig = require('../webpack.config.js')
-app.use(webpackMiddleware(webpack(webpackConfig)))
+// const webpackMiddleware = require('webpack-dev-middleware')
+// const webpack = require('webpack')
+// const webpackConfig = require('../webpack.config.js')
+// app.use(webpackMiddleware(webpack(webpackConfig)))
 
 module.exports = app
