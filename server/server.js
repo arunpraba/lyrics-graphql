@@ -1,8 +1,8 @@
 const express = require('express')
 const expressGraphQL = require('express-graphql')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const models = require('./models')
-const bodyParser = require('body-parser')
 const schema = require('./schema/schema')
 const { MONGO_DB_URL } = require('./server.configs')
 
@@ -23,7 +23,7 @@ mongoose.connection
   .once('open', () => console.log('Connected to MongoLab instance.'))
   .on('error', (error) => console.log('Error connecting to MongoLab:', error))
 
-app.use(bodyParser.json())
+app.use(cors())
 app.use(
   '/graphql',
   expressGraphQL({
@@ -31,10 +31,5 @@ app.use(
     graphiql: true,
   })
 )
-
-// const webpackMiddleware = require('webpack-dev-middleware')
-// const webpack = require('webpack')
-// const webpackConfig = require('../webpack.config.js')
-// app.use(webpackMiddleware(webpack(webpackConfig)))
 
 module.exports = app

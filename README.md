@@ -1,3 +1,3 @@
-# lyrical graphql
+# Lyrical graphql
 
 Song Lyrics Project
