@@ -1,4 +1,4 @@
-# Lyrics React-Graphql-Express Apps
+# Lyrics React-Graphql-Express App
 
 This app is created to practice `React`, `GraphQL` and `Express`
 
