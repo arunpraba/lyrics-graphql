@@ -18,7 +18,7 @@ const SongList = ({ data: { loading, songs, refetch }, mutate }) => {
       <NavButton to="/create" icon="plus" />
       {loading ? (
         <Loader />
-      ) : (
+      ) : songs.length > 0 ? (
         songs.map(({ id, title }) => (
           <div
             key={id}
@@ -35,6 +35,8 @@ const SongList = ({ data: { loading, songs, refetch }, mutate }) => {
             ></i>
           </div>
         ))
+      ) : (
+        <p>Click + button create a song</p>
       )}
     </>
   )

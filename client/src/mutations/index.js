@@ -15,3 +15,25 @@ export const deleteSong = gql`
     }
   }
 `
+
+export const addLyric = gql`
+  mutation AddLyricToSong($content: String, $songId: ID) {
+    addLyricToSong(content: $content, songId: $songId) {
+      id
+      title
+      lyrics {
+        id
+        content
+      }
+    }
+  }
+`
+
+export const likeLyric = gql`
+  mutation LikeLyric($id: ID!) {
+    likeLyric(id: $id) {
+      id
+      likes
+    }
+  }
+`
